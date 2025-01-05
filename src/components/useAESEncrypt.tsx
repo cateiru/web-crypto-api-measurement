@@ -17,7 +17,7 @@ export const useAESEncrypt = (password: string) => {
       const encrypted = await window.crypto.subtle.encrypt(
         {
           name: "AES-GCM",
-          iv,
+          iv: iv,
           tagLength: 128,
         },
         key,

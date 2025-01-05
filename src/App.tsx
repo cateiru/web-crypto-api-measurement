@@ -18,11 +18,15 @@ function App() {
   const { encrypt } = useAESEncrypt(PASSWORD);
   const { decrypt } = useAESDecrypt(PASSWORD);
 
+  const randomDatasets = React.useMemo(() => {
+    return DATASET.sort(() => Math.random() - 0.5);
+  }, []);
+
   const handleClick = async () => {
     setIsLoading(true);
     setResult([]);
 
-    for (const item of DATASET) {
+    for (const item of randomDatasets) {
       try {
         const encrypted = await encrypt(item.data);
 
@@ -49,7 +53,7 @@ function App() {
   };
 
   return (
-    <Box maxW="800px" mx="auto">
+    <Box maxW="800px" mx="auto" px="1rem">
       <Heading textAlign="center" my="3rem" size="3xl">
         Web Crypto API AES暗号計測
       </Heading>
@@ -67,7 +71,7 @@ function App() {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {DATASET.map((item, i) => {
+          {randomDatasets.map((item, i) => {
             const d = result[i] ?? [];
 
             return (
