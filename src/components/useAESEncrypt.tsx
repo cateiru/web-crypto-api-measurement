@@ -10,7 +10,7 @@ export const useAESEncrypt = (password: string) => {
       const encoded = new TextEncoder().encode(data);
 
       // 初期化ベクトルを生成
-      const iv = window.crypto.getRandomValues(new Uint8Array(12));
+      const iv = window.crypto.getRandomValues(new Uint8Array(92));
 
       const start = performance.now();
 
